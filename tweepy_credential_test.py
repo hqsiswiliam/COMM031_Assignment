@@ -13,6 +13,6 @@ auth.set_access_token(access_token, access_token_secret)
 # Creation of the actual interface, using authentication
 api = tweepy.API(auth)
 
-results = api.search(q='2012',lang='zh',result_type='mix',count='450')
+results = api.search(q='Apple',lang='eu',result_type='mix',count='450')
 for result in results:
 	print result.text.encode('utf8')
