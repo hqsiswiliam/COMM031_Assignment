@@ -6,9 +6,10 @@ import os
 import helper_cross_validation
 from sklearn.naive_bayes import GaussianNB,MultinomialNB,BernoulliNB
 from sklearn.feature_extraction.text import TfidfVectorizer
+import pickle
 helper_cross_validation.test()
 percentage=0.1
-step=100
+step=1000
 pattern ='(?u)\\b[A-Za-z]{3,}'
 #start to load files
 training_set_filename_positive = glob.glob(os.path.join("./testing_ham/", '*'))
@@ -39,7 +40,7 @@ for filename in training_set_filename_negative:
 #TO DETERMINE THE BEST NGRAM
 print "This is for max_df parameter"
 n=0
-while n<=10:
+while n<2:
 	n=n+1
 	print ("Max ngram is %d" % (n))
 	classifier = MultinomialNB()
@@ -70,5 +71,6 @@ while n<=10:
 			indexOfTest=indexOfTest+1
 	successRatio =1-float(error_testing_times)/float(total_testing_times)
 	print ("Success Ratio is %f" % (successRatio))
-
+	pickle.dump(classifier,open("bayesian_classfier.ciclass","wb"))
+	pickle.dump(tfidf, open("tfidf.ciclass","wb"))
 

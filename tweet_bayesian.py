@@ -53,20 +53,14 @@ bayesian_classfier.fit(training_feature, tweets_label)
 pickle.dump(bayesian_classfier,open("bayesian_classfier.ciclass","wb"))
 pickle.dump(tfidf, open("tfidf.ciclass","wb"))
 #do the test
-testdata_filename = glob.glob(os.path.join("./test/", '*'))
-testdata = []
-for filename in testdata_filename:
-	#r in here means readonly
-	file_obj = open(filename, 'r').read()
-	content = unicode(file_obj,"utf-8","ignore")
-	testdata.append(content)
+# testdata_filename = glob.glob(os.path.join("./test/", '*'))
+# testdata = []
+# for filename in testdata_filename:
+# 	#r in here means readonly
+# 	file_obj = open(filename, 'r').read()
+# 	content = unicode(file_obj,"utf-8","ignore")
+# 	testdata.append(content)
 
-#extract features from test data
-#make prediction using classifier
-result = cross_validation.cross_validation(bayesian_classfier,tfidf, tweets_data, tweets_label, percentage=0.5,step=1)
-
-
-print result
 
 
 
