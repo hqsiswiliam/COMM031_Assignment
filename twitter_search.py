@@ -14,7 +14,7 @@ auth.set_access_token(access_token, access_token_secret)
  
 api = tweepy.API(auth)
 
-tweets = api.search(q='Master',lang='en',result_type='mix',count='900')
+tweets = api.search(q='Master',lang='en',result_type='mix',count='100')
 results = []
 for result in tweets:
 	results.append(result.text.encode('utf8'))
@@ -23,7 +23,6 @@ bayesian_classfier = pickle.load(open("bayesian_classfier.ciclass", "rb"))
 tfidf = pickle.load(open("tfidf.ciclass", "rb"))
 feature_of_tweets = tfidf.transform(results)
 result_labels = bayesian_classfier.predict(feature_of_tweets)
-print result_labels
 positive = 0;
 total = len(result_labels)
 for i in result_labels:

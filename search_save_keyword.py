@@ -10,12 +10,17 @@ auth.set_access_token(access_token, access_token_secret)
  
 api = tweepy.API(auth)
 
-results = api.search(q='Apple',lang='en',result_type='mix',count='350')
-file = open("Apple.txt", "w")
+
+results = api.search(q='Ukraine',lang='en',result_type='mix',count='100')
+
+
+file = open("Ukraine.txt", "w")
 for result in results:
-	print result.text.encode('utf8')
-	print '\n'
-	# file.write(result.text.encode('utf8'))
-	# file.write('\n\n')
+	# print result.text.encode('utf8')
+	# print '\n'
+	file.write(result.text.encode('utf8'))
+	file.write('\n\n')
 file.close()
+
+print ("Count: %d" % len(results))
 print 'DONE!!!!'

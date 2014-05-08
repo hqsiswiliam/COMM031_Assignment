@@ -16,3 +16,7 @@ api = tweepy.API(auth)
 results = api.search(q='Apple',lang='eu',result_type='mix',count='450')
 for result in results:
 	print result.text.encode('utf8')
+
+# trends = api.trends()
+# for r in trends:
+# 	print r.text.encode('utf8')
