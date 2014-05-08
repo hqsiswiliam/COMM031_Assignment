@@ -10,7 +10,7 @@ auth.set_access_token(access_token, access_token_secret)
  
 api = tweepy.API(auth)
 
-results = api.search(q='Apple',lang='en',result_type='mix',count='1')
+results = api.search(q='Apple',lang='en',result_type='mix',count='350')
 file = open("Apple.txt", "w")
 for result in results:
 	print result.text.encode('utf8')

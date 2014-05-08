@@ -6,6 +6,7 @@ import time
 import os
 from sklearn.naive_bayes import MultinomialNB
 import pickle
+import cross_validation
 
 #filename for the training set filename
 training_set_filename_positive = glob.glob(os.path.join("./training_set/positive/", '*'))
@@ -40,11 +41,11 @@ pattern = '[a-zA-Z0-9]{3,}'
 #set the feature extractor's parameter, in here I set maximum df to 0.9, because tweets is fair more simple than other text.
 #also, the ngram is set to 1-3 to enhance the accurancy, make sure all the content convert into lowercase
 tfidf = TfidfVectorizer(sublinear_tf=True, max_df=0.9, stop_words=None, 
-	token_pattern=pattern, ngram_range=(1, 3), lowercase=True)
+	token_pattern=pattern, ngram_range=(1, 2), lowercase=True)
 #do the feature feature extraction
 training_feature = tfidf.fit_transform(tweets_data)
 
-#create a naive Bayesian classifer
+#create a Multinomial Bayesian classifer
 bayesian_classfier = MultinomialNB() 
 #fit the classfier with feature data and its label
 bayesian_classfier.fit(training_feature, tweets_label)
@@ -61,7 +62,12 @@ for filename in testdata_filename:
 	testdata.append(content)
 
 #extract features from test data
-test_feature = tfidf.transform(testdata)
 #make prediction using classifier
-result = bayesian_classfier.predict(test_feature)
-print (result)
+result = cross_validation.cross_validation(bayesian_classfier,tfidf, tweets_data, tweets_label, percentage=0.5,step=1)
+
+
+print result
+
+
+
+
