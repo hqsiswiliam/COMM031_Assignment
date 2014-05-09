@@ -18,7 +18,6 @@ tweets = api.search(q='Master',lang='en',result_type='mix',count='100')
 results = []
 for result in tweets:
 	results.append(result.text.encode('utf8'))
-
 bayesian_classfier = pickle.load(open("bayesian_classfier.ciclass", "rb"))
 tfidf = pickle.load(open("tfidf.ciclass", "rb"))
 feature_of_tweets = tfidf.transform(results)
