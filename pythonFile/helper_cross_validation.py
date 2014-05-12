@@ -5,7 +5,6 @@ def test():
 		print 'Pass test!'
 		return None
 #do the cross-validation, in here, vector should be shape as (2, n)
-#we compare the correctness for Guassian Bayesian, Multinomial Bayesian, and Bernoulli Bayesian
 def spilteDataAndLabel(training_set,label_set,count,percentage,step=1):
 	# sliced_training_data
 	# sliced_testing_data
